@@ -24,6 +24,11 @@ export class ShoppingListPage {
     form.reset();
     this.loadItems();
   }
+  
+  onCheckItem(index: number) {
+    this.shoppingListService.removeItem(index);
+    this.loadItems();
+  }
 
   private loadItems() {
     this.shoppingList = this.shoppingListService.getItems();
