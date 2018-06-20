@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
@@ -24,7 +24,7 @@ export class ShoppingListPage {
     form.reset();
     this.loadItems();
   }
-  
+
   onCheckItem(index: number) {
     this.shoppingListService.removeItem(index);
     this.loadItems();
