@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @IonicPage()
@@ -12,7 +12,7 @@ export class EditRecipePage implements OnInit {
   selectOptions = ['Easy', 'Medium', 'Hard'];
   recipeForm: FormGroup;
 
-  constructor(private navParams: NavParams, private actionSheetCtrl: ActionSheetController) {}
+  constructor(private navParams: NavParams, private actionSheetCtrl: ActionSheetController, private alertCtrl: AlertController) {}
 
   ngOnInit() {
     this.mode = this.navParams.get('mode');
@@ -42,10 +42,37 @@ export class EditRecipePage implements OnInit {
         },
         {
           text: 'Cancel',
-          role: 'Cancel'
+          role: 'cancel'
         }
       ]
     });
+  }
+
+  private createNewIngrediantAlert () {
+    const newIngrediantAlert = this.alertCtrl.create({
+      title: 'Add Ingrediant',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'name'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Add',
+          handler: (data) => {
+            if (data.name.trim() == '' || data.name == null) {
+
+            }
+            
+          }
+        }
+      ]
+    })
   }
 
   private initualizeForm() {
