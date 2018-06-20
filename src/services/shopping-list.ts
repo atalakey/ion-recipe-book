@@ -5,6 +5,7 @@ export class ShoppingListService {
 
   addItem(name: string, amount: number) {
     this.ingrediants.push(new Ingrediant(name, amount));
+    console.log(this.ingrediants);
   }
 
   addItems(items: Ingrediant[]) {
