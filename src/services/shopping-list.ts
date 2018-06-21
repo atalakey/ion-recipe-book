@@ -39,8 +39,12 @@ export class ShoppingListService {
   fetchList(token: string) {
     const userId = this.authService.getActiveUser().uid;
     return this.http.get(firebaseConfig.databaseUrl + userId + '/shopping-list.json?auth=' + token)
-      .do((data: Ingrediant[]) => {
-        this.ingrediants = data;
+      .do((ingrediants: Ingrediant[]) => {
+        if(ingrediants) {
+          this.ingrediants = ingrediants;
+        } else {
+          this.ingrediants = [];
+        }
       });
   }
 }

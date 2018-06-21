@@ -4,8 +4,8 @@ import { NgForm } from '@angular/forms';
 
 import { ShoppingListService } from '../../services/shopping-list';
 import { Ingrediant } from '../../models/ingrediant';
-import { ShoppingListOptionsPage } from './shopping-list-options/shopping-list-options';
 import { AuthService } from '../../services/auth';
+import { DatabaseOptionsPage } from '../database-options/database-options';
 
 @IonicPage()
 @Component({
@@ -41,7 +41,7 @@ export class ShoppingListPage {
       content: 'Please wait...'
     });
 
-    const popover = this.popoverCtrl.create(ShoppingListOptionsPage);
+    const popover = this.popoverCtrl.create(DatabaseOptionsPage);
     popover.present({ev: event});
 
     popover.onDidDismiss((data) => {
@@ -50,10 +50,10 @@ export class ShoppingListPage {
         this.authService.getActiveUser().getIdToken()
           .then((token: string) => {
             this.shoppingListService.fetchList(token).subscribe(
-              (list: Ingrediant[]) => {
+              (shoppingList: Ingrediant[]) => {
                 loading.dismiss();
-                if(list) {
-                  this.shoppingList = list;
+                if(shoppingList) {
+                  this.shoppingList = shoppingList;
                 } else {
                   this.shoppingList = [];
                 }

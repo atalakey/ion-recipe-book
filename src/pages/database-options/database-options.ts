@@ -3,10 +3,10 @@ import { IonicPage, ViewController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-shopping-list-options',
-  templateUrl: 'shopping-list-options.html',
+  selector: 'database-options',
+  templateUrl: 'database-options.html',
 })
-export class ShoppingListOptionsPage {
+export class DatabaseOptionsPage {
   constructor(private viewCtrl: ViewController) {}
 
   onAction(action: string) {
