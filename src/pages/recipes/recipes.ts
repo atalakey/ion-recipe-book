@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, PopoverController, LoadingController, AlertController } from 'ionic-angular';
 
 import { EditRecipePage } from '../edit-recipe/edit-recipe';
-import { Recipe } from '../../models/recipe';
-import { RecipesService } from '../../services/recipes';
 import { RecipePage } from '../recipe/recipe';
 import { DatabaseOptionsPage } from '../database-options/database-options';
+import { RecipesService } from '../../services/recipes';
 import { AuthService } from '../../services/auth';
+import { Recipe } from '../../models/recipe';
 
 @IonicPage()
 @Component({

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Recipe } from '../../models/recipe';
 import { EditRecipePage } from '../edit-recipe/edit-recipe';
 import { ShoppingListService } from '../../services/shopping-list';
 import { RecipesService } from '../../services/recipes';
+import { Recipe } from '../../models/recipe';
 
 @IonicPage()
 @Component({

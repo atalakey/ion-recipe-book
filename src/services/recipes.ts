@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import 'rxjs/Rx';
 
+import { AuthService } from "./auth";
 import { Recipe } from "../models/recipe";
 import { Ingrediant } from "../models/ingrediant";
-import { AuthService } from "./auth";
 
 import {firebaseConfig} from '../app/firebase-config';
 
@@ -25,7 +25,7 @@ export class RecipesService {
   }
 
   updateRecipe(index: number, title: string, description: string, difficulty: string, ingrediants: Ingrediant[]) {
-      this.recipes[index] = new Recipe(title, description, difficulty, ingrediants);
+    this.recipes[index] = new Recipe(title, description, difficulty, ingrediants);
   }
 
   removeRecipe(index: number) {

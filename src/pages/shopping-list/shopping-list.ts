@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, PopoverController, LoadingController, AlertController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
-import { ShoppingListService } from '../../services/shopping-list';
-import { Ingrediant } from '../../models/ingrediant';
-import { AuthService } from '../../services/auth';
 import { DatabaseOptionsPage } from '../database-options/database-options';
+import { ShoppingListService } from '../../services/shopping-list';
+import { AuthService } from '../../services/auth';
+import { Ingrediant } from '../../models/ingrediant';
 
 @IonicPage()
 @Component({
