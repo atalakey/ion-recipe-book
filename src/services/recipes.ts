@@ -40,6 +40,16 @@ export class RecipesService {
   fetchList(token: string) {
     const userId = this.authService.getActiveUser().uid;
     return this.http.get(firebaseConfig.databaseUrl + userId + '/recipes.json?auth=' + token)
+      .map((response: Response) => {
+        const recipes: Recipe[] = response ? response : [];
+        for(let item of recipes) {
+          if(!item.hasOwnProperty('ingrediants')) {
+            item.ingrediants = [];
+          }
+        }
+
+        return recipes;
+      })
       .do((recipes: Recipe[]) => {
         if(recipes) {
           this.recipes = recipes;
