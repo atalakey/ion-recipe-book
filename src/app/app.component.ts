@@ -3,12 +3,13 @@ import { Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import firebase from 'firebase';
-
 import { TabsPage } from '../pages/tabs/tabs';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../services/auth';
+
+import firebase from 'firebase';
+import {firebaseConfig} from './firebase-config';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,8 +23,8 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController, private authService: AuthService) {
     firebase.initializeApp({
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN"
+      apiKey: firebaseConfig.apiKey,
+      authDomain: firebaseConfig.authDomain
     });
 
     firebase.auth().onAuthStateChanged(user => {
