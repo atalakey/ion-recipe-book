@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, Button } from 'ionic-angular';
+import { IonicPage, LoadingController, AlertController, Button } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 import { AuthService } from '../../services/auth';
@@ -11,16 +11,9 @@ import { AuthService } from '../../services/auth';
 })
 export class SignupPage {
 
-  constructor(private navCtrl: NavController,
-              private navParams: NavParams,
-              private loadingCtrl: LoadingController,
+  constructor(private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
-              private authService: AuthService,) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
-  }
+              private authService: AuthService) {}
 
   onSignup(form: NgForm) {
     const loading = this.loadingCtrl.create({
