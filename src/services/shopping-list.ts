@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import 'rxjs/Rx';
 
 import { AuthService } from "./auth";
 import { Ingrediant } from "../models/ingrediant";
@@ -33,5 +34,13 @@ export class ShoppingListService {
   storeList(token: string) {
     const userId = this.authService.getActiveUser().uid;
     return this.http.put(firebaseConfig.databaseUrl + userId + '/shopping-list.json?auth=' + token, this.ingrediants);
+  }
+
+  fetchList(token: string) {
+    const userId = this.authService.getActiveUser().uid;
+    return this.http.get(firebaseConfig.databaseUrl + userId + '/shopping-list.json?auth=' + token)
+      .do((data: Ingrediant[]) => {
+        this.ingrediants = data;
+      });
   }
 }

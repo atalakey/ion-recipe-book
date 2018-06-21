@@ -40,7 +40,20 @@ export class ShoppingListPage {
 
     popover.onDidDismiss((data) => {
       if(data.action == 'load') {
-
+        this.authService.getActiveUser().getIdToken()
+          .then((token: string) => {
+            this.shoppingListService.fetchList(token).subscribe(
+              (list: Ingrediant[]) => {
+                if(list) {
+                  this.shoppingList = list;
+                } else {
+                  this.shoppingList = [];
+                }
+                console.log('Success!');
+              },
+              error => console.log(error)
+            );
+          });
       } else {
         this.authService.getActiveUser().getIdToken()
           .then((token: string) => {
