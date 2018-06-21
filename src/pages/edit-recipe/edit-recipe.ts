@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { RecipesService } from '../../services/recipes';
 
 @IonicPage()
 @Component({
@@ -12,10 +13,12 @@ export class EditRecipePage implements OnInit {
   selectOptions = ['Easy', 'Medium', 'Hard'];
   recipeForm: FormGroup;
 
-  constructor(private navParams: NavParams,
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
               private actionSheetCtrl: ActionSheetController,
               private alertCtrl: AlertController,
-              private toastCtrl: ToastController) {}
+              private toastCtrl: ToastController,
+              private recipesService: RecipesService) {}
 
   ngOnInit() {
     this.mode = this.navParams.get('mode');
@@ -24,6 +27,17 @@ export class EditRecipePage implements OnInit {
 
   onSubmit() {
     console.log(this.recipeForm);
+
+    let ingrediants = [];
+
+    if(this.recipeForm.value.ingrediants.length > 0) {
+      ingrediants = this.recipeForm.value.ingrediants.map((name) => {
+        return {name: name, amount: 1};
+      })
+    }
+
+    this.recipesService.addRecipe(this.recipeForm.value.title, this.recipeForm.value.description, this.recipeForm.value.difficulty, ingrediants);
+    this.navCtrl.popToRoot();
   }
 
   onManageIngrediants() {
