@@ -16,12 +16,23 @@ export class MyApp {
   tabsPage:any = TabsPage;
   signinPage:any = SigninPage;
   signupPage:any = SignupPage;
-  @ViewChild('nav') navCtrl: NavController;
+  isAuthenticated:boolean = false;
+  @ViewChild('nav') navCtrl:NavController;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController) {
     firebase.initializeApp({
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_AUTH_DOMAIN"
+    });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        this.isAuthenticated = true;
+        this.navCtrl.setPages(this.tabsPage);
+      } else {
+        this.isAuthenticated = false;
+        this.navCtrl.setRoot(this.signinPage);
+      }
     });
 
     platform.ready().then(() => {
