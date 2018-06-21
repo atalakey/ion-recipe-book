@@ -12,7 +12,10 @@ export class EditRecipePage implements OnInit {
   selectOptions = ['Easy', 'Medium', 'Hard'];
   recipeForm: FormGroup;
 
-  constructor(private navParams: NavParams, private actionSheetCtrl: ActionSheetController, private alertCtrl: AlertController, private toastCtrl: ToastController) {}
+  constructor(private navParams: NavParams,
+              private actionSheetCtrl: ActionSheetController,
+              private alertCtrl: AlertController,
+              private toastCtrl: ToastController) {}
 
   ngOnInit() {
     this.mode = this.navParams.get('mode');
