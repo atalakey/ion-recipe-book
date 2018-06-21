@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @IonicPage()
@@ -12,7 +12,7 @@ export class EditRecipePage implements OnInit {
   selectOptions = ['Easy', 'Medium', 'Hard'];
   recipeForm: FormGroup;
 
-  constructor(private navParams: NavParams, private actionSheetCtrl: ActionSheetController, private alertCtrl: AlertController) {}
+  constructor(private navParams: NavParams, private actionSheetCtrl: ActionSheetController, private alertCtrl: AlertController, private toastCtrl: ToastController) {}
 
   ngOnInit() {
     this.mode = this.navParams.get('mode');
@@ -43,6 +43,14 @@ export class EditRecipePage implements OnInit {
               for(let i = len - 1; i >= 0; i--) {
                 fArray.removeAt(i);
               }
+
+              const toast = this.toastCtrl.create({
+                message: 'All Ingrediants were deleted!',
+                duration: 1500,
+                position: 'bottom'
+              });
+  
+              toast.present();
             }
           }
         },
@@ -74,10 +82,26 @@ export class EditRecipePage implements OnInit {
           text: 'Add',
           handler: (data) => {
             if (data.name.trim() == '' || data.name == null) {
+              const toast = this.toastCtrl.create({
+                message: 'Please enter a valid value',
+                duration: 1500,
+                position: 'bottom'
+              });
+
+              toast.present();
+
               return;
             }
 
             (<FormArray>this.recipeForm.get('ingrediants')).push(new FormControl(data.name, Validators.required));
+
+            const toast = this.toastCtrl.create({
+              message: 'Item added!',
+              duration: 1500,
+              position: 'bottom'
+            });
+
+            toast.present();
           }
         }
       ]
