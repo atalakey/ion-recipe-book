@@ -30,7 +30,7 @@ export class EditRecipePage implements OnInit {
         {
           text: 'Add Ingrediant',
           handler: () => {
-
+            this.createNewIngrediantAlert().present();
           }
         },
         {
@@ -46,10 +46,12 @@ export class EditRecipePage implements OnInit {
         }
       ]
     });
+
+    actionSheet.present();
   }
 
   private createNewIngrediantAlert () {
-    const newIngrediantAlert = this.alertCtrl.create({
+    return this.alertCtrl.create({
       title: 'Add Ingrediant',
       inputs: [
         {
@@ -66,13 +68,14 @@ export class EditRecipePage implements OnInit {
           text: 'Add',
           handler: (data) => {
             if (data.name.trim() == '' || data.name == null) {
-
+              return;
             }
 
+            (<FormArray>this.recipeForm.get('ingrediants')).push(new FormControl(data.name, Validators.required));
           }
         }
       ]
-    })
+    });
   }
 
   private initualizeForm() {
