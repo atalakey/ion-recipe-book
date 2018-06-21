@@ -8,18 +8,19 @@ import firebase from 'firebase';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
+import { AuthService } from '../services/auth';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  tabsPage:any = TabsPage;
-  signinPage:any = SigninPage;
-  signupPage:any = SignupPage;
-  isAuthenticated:boolean = false;
-  @ViewChild('nav') navCtrl:NavController;
+  rootPage: any = TabsPage;
+  signinPage: any = SigninPage;
+  signupPage: any = SignupPage;
+  isAuthenticated: boolean = false;
+  @ViewChild('nav') navCtrl: NavController;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController, private authService: AuthService) {
     firebase.initializeApp({
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_AUTH_DOMAIN"
@@ -28,10 +29,10 @@ export class MyApp {
     firebase.auth().onAuthStateChanged(user => {
       if(user) {
         this.isAuthenticated = true;
-        this.navCtrl.setPages(this.tabsPage);
+        this.rootPage = TabsPage;
       } else {
         this.isAuthenticated = false;
-        this.navCtrl.setRoot(this.signinPage);
+        this.rootPage = SigninPage;
       }
     });
 
@@ -50,7 +51,9 @@ export class MyApp {
   }
 
   onLogout() {
-    
+    this.authService.logout();
+    this.menuCtrl.close();
+    this.navCtrl.setRoot(SigninPage);
   }
 }
 
