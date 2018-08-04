@@ -50,11 +50,11 @@ You must have Ionic, npm and nodejs installed.
 ``` 
 1. Clone the project:
 
-    git clone https://github.com/atalakey/recipe-book-app.git ~/Desktop/recipe-book-app
+    git clone https://github.com/atalakey/ion-recipe-book-app.git ~/Desktop/ion-recipe-book-app
 
 2. Navigate to where you cloned the project:
 
-    cd ~/Desktop/recipe-book-app
+    cd ~/Desktop/ion-recipe-book-app
 
 3. Install App local packages:
 
