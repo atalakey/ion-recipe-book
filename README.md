@@ -1,4 +1,4 @@
-# recipe-book-app
+# ion-recipe-book
 A cross platform (iOS, Android, Windows OS) mobile application built with Angular and Ionic 2. The app is to help beginners with Angular background to learn Ionic. In the app the user can create recipes and add recipes ingredients to a shopping list.
 
 ### App demo:
@@ -50,11 +50,11 @@ You must have Ionic, npm and nodejs installed.
 ``` 
 1. Clone the project:
 
-    git clone https://github.com/atalakey/ion-recipe-book-app.git ~/Desktop/ion-recipe-book-app
+    git clone https://github.com/atalakey/ion-recipe-book.git ~/Desktop/ion-recipe-book
 
 2. Navigate to where you cloned the project:
 
-    cd ~/Desktop/ion-recipe-book-app
+    cd ~/Desktop/ion-recipe-book
 
 3. Install App local packages:
 
@@ -65,7 +65,7 @@ You must have Ionic, npm and nodejs installed.
 	a. Login to your Gmail account.
 	b. Visit the Firebase Console: https://console.firebase.google.com
 	c. Add a new project
-	d. Add your Firebase project's apiKey, authDomain and databaseUrl to the "recipe-book-app/src/app/firebase-config.ts" config file
+	d. Add your Firebase project's apiKey, authDomain and databaseUrl to the "ion-recipe-book/src/app/firebase-config.ts" config file
 
 4. Run the App
 
